@@ -1,3 +1,4 @@
+#include "defs.h"
 #include "main.h"
 #include "print.h"
 #include "stats.h"
@@ -8,7 +9,6 @@
 #include "roll.h"
 #include "pwdctl.h"
 #include "help.h"
-#include "mines.h"
 #include "appvar.h"
 #include "flags.h"
 #include "testmode.h"
@@ -48,6 +48,11 @@ int real_main()
 
             // hidden features
             _C(kCapY, do_toggle_testmodebar, ?);
+        case kCapV:
+            puts("version");
+            os_PutStrFull("AACONSLE ");
+            puts(aaconsle_version);
+            break;
 
             // developer features
             _C(kCapF, do_flags, flags);
