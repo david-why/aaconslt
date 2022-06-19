@@ -1,0 +1,7 @@
+# objects
+obj/*
+bin/*
+
+# vscode
+.vscode/*
+
