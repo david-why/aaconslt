@@ -5,8 +5,6 @@
 
 extern const uint16_t testmode_pwd[];
 
-void fake_testmode();
-void do_fake_testmode();
 void toggle_testmodebar();
 void do_toggle_testmodebar();
 

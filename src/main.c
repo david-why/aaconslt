@@ -47,8 +47,6 @@ int real_main()
             _C(kCapA, do_appvars, appvars);
 
             // hidden features
-            // _C(kCapM, do_mines, ?);
-            _C(kCapX, do_fake_testmode, ?);
             _C(kCapY, do_toggle_testmodebar, ?);
 
             // developer features
