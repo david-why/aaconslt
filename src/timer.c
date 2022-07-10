@@ -23,16 +23,16 @@ static void printint(int i, int minlen)
     os_PutStrFull(buf);
 }
 
-void print_time(uint32_t millis, uint8_t row, uint8_t col)
+void print_time(uint32_t tim, uint8_t row, uint8_t col)
 {
     os_SetCursorPos(row, col);
-    printint(millis / 100 / 60 / 60, 2);
+    printint(tim / 10 / 60 / 60, 2);
     os_PutStrLine(":");
-    printint(millis / 100 / 60 % 60, 2);
+    printint(tim / 10 / 60 % 60, 2);
     os_PutStrLine(":");
-    printint(millis / 100 % 60, 2);
+    printint(tim / 10 % 60, 2);
     os_PutStrLine(".");
-    printint(millis % 100, 2);
+    printint(tim % 10, 1);
 }
 
 uint32_t time_adddigit(uint32_t secs, uint8_t val)
@@ -43,8 +43,8 @@ uint32_t time_adddigit(uint32_t secs, uint8_t val)
     m = secs / 60 % 60; // minutes
     h = secs / 60 / 60; // hours
     s2 = s % 10 * 10 + val;
-    m2 = s / 10 % 10 + m % 10 * 10;
-    h2 = m / 10 % 10 + h * 10;
+    m2 = s / 10 + m % 10 * 10;
+    h2 = m / 10 + h * 10;
     if (s2 >= 60)
     {
         m2++;
@@ -140,7 +140,7 @@ void do_timer()
             timer_SetReload(1, tim * 32768);
             break;
         }
-        print_time(timer_Get(1) * 100 / 32768, r, c);
+        print_time(timer_Get(1) * 10 / 32768, r, c);
         if (timer_ChkInterrupt(1, TIMER_RELOADED))
             timer_Disable(1), timer_AckInterrupt(1, TIMER_RELOADED), started = 0, timer_Set(1, timer_GetReload(1));
     }
